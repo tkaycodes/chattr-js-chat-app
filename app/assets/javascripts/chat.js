@@ -23,11 +23,11 @@ $(document).ready(function(){
   }
  
 
-  setInterval(loadAllMessages, 2000);
+  // var message_interval = setInterval(loadAllMessages, 2000);
 
 
   // submit message form:
-  $('form').submit(function(e){
+  $('#submit_message_form').submit(function(e){
     e.preventDefault();
     var message_body = $('#message').val();
     

@@ -1,10 +1,19 @@
 <h1>Chattr</h1>
+<%= link_to "Choose Display Name", new_session_path, remote: true %>
+
+
+<div id="sessions_page" style="display:none">
+  <%=render 'sessions/form'%>
+</div>
+
+<hr>
 
 <div>
-  <form>
+  <form id="submit_message_form">
     <textarea name="message" id="message" placeholder="Type your message..."></textarea>
-    <input type="submit"></input>
+    <input type="submit" id="submit_message_btn"></input>
 </form>
+
 
 
   <ul id="all_messages">

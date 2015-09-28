@@ -43,7 +43,7 @@ textarea {
   padding: 10px;
 }
 
-input[type='submit'] {
+#submit_message_btn {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
