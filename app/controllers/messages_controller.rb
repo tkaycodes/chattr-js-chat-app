@@ -1,9 +1,16 @@
 class MessagesController < ApplicationController
+
   def index
-    render text: "hello"
+    render json: Message.all
   end
 
   def create
-    render text: params
+    @message = Message.new(body: params[:message])
+    if @message.save
+      head :created
+    else
+      render json: { errors: @message.errors.full_messages}, status: 422
+    end
   end
+
 end
