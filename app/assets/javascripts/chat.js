@@ -13,7 +13,11 @@ $(document).ready(function(){
         $('#all_messages').html("");
 
         for (var i=0;i<data.length;i++){
-          $('#all_messages').prepend("<li data-message_id="+data[i].id+"><i>x</i><strong>"+data[i].user+": </strong>"+data[i].body+"<span id=\"created_at\">"+data[i].created_at+" ago</span></li>");
+          $('#all_messages').prepend("<li data-message_id="+
+                                      data[i].id+"><i>x</i><strong>"+
+                                      data[i].user+": </strong>"+
+                                      data[i].body+"<span id=\"created_at\">"+
+                                      data[i].created_at+" ago</span></li>");
         }
 
 
@@ -48,10 +52,9 @@ $(document).ready(function(){
       },
       
       error: function(data){
-         // var response = jQuery.parseJSON(data.responseText);
-         // var error_message = response.errors.join(",");
-         // alert(error_message);
-         alert("Cant create Message");
+         var response = jQuery.parseJSON(data.responseText);
+         var error_message = response.errors.join(",");
+         alert(error_message);
       }
 
     }); //end of ajax function 
@@ -61,8 +64,8 @@ $(document).ready(function(){
   });   //end of $('form') submit function
 
 
-  loadAllMessages();
-   // setInterval(loadAllMessages,2000);
+  // loadAllMessages();
+  setInterval(loadAllMessages,2000);
 
 
    // event delegation 
