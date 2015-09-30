@@ -1,4 +1,19 @@
 <h1>Chattr</h1>
+
+
+<% if !flash.empty? %>
+  <% flash.keys.each do |x| %>
+    <div><%= flash[x] %></div>
+  <% end %>
+<% end %>
+
+<div>
+  <% if user_signed_in? %>
+    Display Name: <%= current_user %>
+  <% end %>
+</div>
+
+
 <%= link_to "Choose Display Name", new_session_path, remote: true %>
 
 
@@ -10,7 +25,7 @@
 
 <div>
   <form id="submit_message_form">
-    <textarea name="message" id="message" placeholder="Type your message..."></textarea>
+    <textarea name="message" id="message" placeholder="Type your message..." data-username=<%=current_user%> ></textarea>
     <input type="submit" id="submit_message_btn"></input>
 </form>
 

@@ -1,5 +1,6 @@
 class Message < ActiveRecord::Base
   validates :body, presence: true
+  belongs_to :user
 
 
   # validations for testing js alert for message error messages :
