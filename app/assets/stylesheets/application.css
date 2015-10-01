@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.label-default{
+  background-color:#18BC9C !important;
+}
+
+.btn-default{
+    background-color:#18BC9C !important;
+    color:white !important;
+
+}
+
+

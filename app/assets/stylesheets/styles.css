@@ -6,8 +6,14 @@ body {
   padding: 0;
 }
 
-i {
+#created_at {
   float: right;
+  font-style: normal;
+  color: #bdc3c7;
+  cursor: pointer;
+}
+
+i{
   font-style: normal;
   color: #bdc3c7;
   cursor: pointer;
@@ -43,7 +49,7 @@ textarea {
   padding: 10px;
 }
 
-input[type='submit'] {
+#submit_message_btn {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
