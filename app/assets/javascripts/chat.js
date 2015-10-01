@@ -15,7 +15,7 @@ $(document).ready(function(){
         for (var i=0;i<data.length;i++){
           $('#all_messages').prepend("<li data-message_id="+
                                       data[i].id+"><i>x</i><strong>"+
-                                      data[i].user+": </strong>"+
+                                      data[i].user_name+": </strong>"+
                                       data[i].body+"<span id=\"created_at\">"+
                                       data[i].created_at+" ago</span></li>");
         }
@@ -27,6 +27,14 @@ $(document).ready(function(){
         }
       });
   }
+
+
+  function appendIfDosntExist(user){
+    if ( $('#online_users').text().indexOf(user) === -1 )
+    {
+        $('#online_users').append("<li class='label label-success'>"+user+"</li>"+"\n");
+    }
+  }
  
 
   // var message_interval = setInterval(loadAllMessages, 2000);
@@ -36,18 +44,24 @@ $(document).ready(function(){
   $('#submit_message_form').submit(function(e){
     e.preventDefault();
     var message_body = $('#message').val();
-    var posted_by = $('#message').data("username");
+    var posted_by    = $('#message').data("username");
+    var posted_by_id = $('#message').data("userid");
+
+
+    // if user is not in list of onlien users already, append his name to list
+    // appendIfDosntExist(posted_by);
+    
     
     $('#message').val('');
     $('#message').focus();
 
     $.ajax({
-      url:      '/messages',
+      url:      'users/'+posted_by_id+'/messages',
       method:   'post',
-      data:     { message: message_body, user_name: posted_by },
+      data:     { message: message_body, user_id: posted_by_id},
 
       success: function(data){
-        // console.log(data);
+        console.log(data);
         loadAllMessages();
       },
       
@@ -59,12 +73,12 @@ $(document).ready(function(){
 
     }); //end of ajax function 
 
-     // loadAllMessages();
+      loadAllMessages();
 
   });   //end of $('form') submit function
 
 
-  // loadAllMessages();
+  loadAllMessages();
   setInterval(loadAllMessages,2000);
 
 
@@ -90,6 +104,43 @@ $(document).ready(function(){
     // alert('clicked');
    });
 
+
+
+   // online users 
+
+   function seeWhosOnline(){
+      $.ajax({
+        url:      "/users",
+        method:   "get",
+        dataType: "json",
+        success: function(data){
+          // data retuns online users
+          console.log(data);
+          console.log(data.length);
+          // if users online(online user count is not 0)
+          if (data.length !== 0){
+            $('#online_users').html("Users posting messages: ");
+            for (var i=0;i<data.length;i++){
+              appendIfDosntExist(data[i].user_name);
+            }
+          }
+          else{
+            // if no users online
+            $('#online_users').html("No users currently posting");
+          }
+          
+        
+        },
+        error: function(data){
+          console.log(data);
+        }
+      });
+   }
+
+  seeWhosOnline();
+
+  setInterval(seeWhosOnline, 2000);
+   
 
 
 

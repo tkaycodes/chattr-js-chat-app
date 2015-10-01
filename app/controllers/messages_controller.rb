@@ -1,12 +1,15 @@
 class MessagesController < ApplicationController
 
   def index
-    # render json: Message.all
      @messages = Message.all
   end
 
   def create
-    @message      = Message.new(body: params[:message], username: params[:user_name])
+    @message      = Message.new(body: params[:message])
+    if params[:user_id] != "undefined"
+      @message.user = User.find(params[:user_id])
+      @message.user.update_attributes(last_seen: Time.now)
+    end
       if @message.save
         render status: 201, json: {message: 'created', details: @message.inspect}
       else
