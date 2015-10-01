@@ -1,7 +1,11 @@
 class MessagesController < ApplicationController
 
   def index
-     @messages = Message.all
+    @messages = Message.all
+    if user_signed_in?
+      user = User.find_by_name(session[:user_name])
+      user.update_attributes(last_seen: Time.now)
+    end
   end
 
   def create

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   # all users who were last made a post request within the x unit of time
   def self.online_now
-    where("last_seen >= ?", Time.now-5.seconds)
+    where("last_seen >= ?", Time.now-2.seconds)
   end
 
 end

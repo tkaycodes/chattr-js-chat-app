@@ -3,28 +3,19 @@
 
 <h1 style="margin-top:0px;color:white">Chattr</h1>
 
-<% if !flash.empty? %>
-  <% flash.keys.each do |x| %>
-    <div><%= flash[x] %></div>
-  <% end %>
-<% end %>
-
-
 
 
 <div class="col-sm-10">
   <form id="submit_message_form">
-
     <!-- input has data attrs for user name and current user id -->
-     <textarea name="message" id="message" placeholder="Type your message..." 
+  <textarea name="message" id="message" placeholder="Type your message..." 
       data-username=<%= current_user if user_signed_in? %> 
-      data-userid=<%= current_user_id if user_signed_in? %> > 
+      data-userid=<%= current_user_id if user_signed_in? %>> 
     </textarea>
     <input type="submit" id="submit_message_btn"></input>
-</form>
-<hr>
-
-
+  </form>
+  
+  <hr>
 
   <ul id="all_messages">
   </ul>
@@ -32,27 +23,33 @@
 
 
 <div class="col-sm-2">
-    <%#= link_to "Choose Display Name", new_session_path, remote: true %>
-    <%= link_to "Choose Display Name", new_user_path, class: "btn", remote: true %>
+    
 
      <% if user_signed_in? %>
-        <strong class="label label-default">Display Name:</strong> 
+        <div style="margin-bottom:5px;font-size:20px;word-wrap: break-word;">
+          <strong class="label label-default">Display Name:</strong> 
           <strong><%= current_user %> </strong>
+        </div>
       <% end %>
+
+      <%= link_to "Choose/Change Display Name", new_user_path, remote: true %>
 
       <!-- new user path -->
       <div id="user_create_form" style="display:none">
         <%= render 'users/form' %>
       </div>
       
-      <hr>
+     <br><br><br><br><br>
 
 
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <ul id="online_users"></ul>            
+          
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <ul style="text-align:center" id="online_users">       
+                </ul>    
+              </div>        
             </div>
-        </div>
+        
 
       
 

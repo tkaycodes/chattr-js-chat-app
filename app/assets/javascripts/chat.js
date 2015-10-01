@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $('#message').html("");
 
 
   // load all the messages:
@@ -14,7 +15,7 @@ $(document).ready(function(){
 
         for (var i=0;i<data.length;i++){
           $('#all_messages').prepend("<li data-message_id="+
-                                      data[i].id+"><i>x</i><strong>"+
+                                      data[i].id+"><i>x </i><strong>"+
                                       data[i].user_name+": </strong>"+
                                       data[i].body+"<span id=\"created_at\">"+
                                       data[i].created_at+" ago</span></li>");
@@ -32,7 +33,7 @@ $(document).ready(function(){
   function appendIfDosntExist(user){
     if ( $('#online_users').text().indexOf(user) === -1 )
     {
-        $('#online_users').append("<li class='label label-success'>"+user+"</li>"+"\n");
+        $('#online_users').append("<li><span class='label label-success'>"+user+"</span></li>");
     }
   }
  
@@ -119,14 +120,14 @@ $(document).ready(function(){
           console.log(data.length);
           // if users online(online user count is not 0)
           if (data.length !== 0){
-            $('#online_users').html("Users posting messages: ");
+            $('#online_users').html("Online users:");
             for (var i=0;i<data.length;i++){
               appendIfDosntExist(data[i].user_name);
             }
           }
           else{
             // if no users online
-            $('#online_users').html("No users currently posting");
+            $('#online_users').html("No users currently online");
           }
           
         
