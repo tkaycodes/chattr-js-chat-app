@@ -30,6 +30,13 @@ $(document).ready(function(){
   }
 
 
+  // calling above function
+  loadAllMessages();
+
+
+
+
+  // helper function for appending user names to list of online users
   function appendIfDosntExist(user){
     if ( $('#online_users').text().indexOf(user) === -1 )
     {
@@ -38,23 +45,19 @@ $(document).ready(function(){
   }
  
 
-  // var message_interval = setInterval(loadAllMessages, 2000);
 
 
-  // submit message form:
+  // submit new message form:
   $('#submit_message_form').submit(function(e){
     e.preventDefault();
     var message_body = $('#message').val();
     var posted_by    = $('#message').data("username");
     var posted_by_id = $('#message').data("userid");
+        
 
-
-    // if user is not in list of onlien users already, append his name to list
-    // appendIfDosntExist(posted_by);
-    
-    
     $('#message').val('');
     $('#message').focus();
+
 
     $.ajax({
       url:      'users/'+posted_by_id+'/messages',
@@ -74,17 +77,21 @@ $(document).ready(function(){
 
     }); //end of ajax function 
 
-      loadAllMessages();
-
-  });   //end of $('form') submit function
+  });   //end of submit form function
 
 
-  loadAllMessages();
+
+
+  // call loadallmessages every 2 seconds(polling)
   setInterval(loadAllMessages,2000);
 
 
-   // event delegation 
+
+
+
+   // event delegation (when x icon is clicked - delete message)
    $('#all_messages').on("click", "i", function(){
+
     var node_to_delete = $(this).parent("li").data("message_id");
     console.log(node_to_delete);
     $.ajax({
@@ -100,10 +107,12 @@ $(document).ready(function(){
 
     });
 
-
     $(this).parent("li").slideUp();
-    // alert('clicked');
    });
+
+
+
+
 
 
 
@@ -136,6 +145,7 @@ $(document).ready(function(){
           console.log(data);
         }
       });
+      
    }
 
   seeWhosOnline();
