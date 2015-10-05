@@ -29,12 +29,19 @@
 
      <% if user_signed_in? %>
         <div style="margin-bottom:5px;font-size:20px;word-wrap: break-word;">
-          <strong class="label label-default">Display Name:</strong> 
-          <strong><%= current_user %> </strong>
+          <strong class="label label-success">Display Name: 
+          <%= current_user %> </strong>
         </div>
-      <% end %>
+        <%= link_to "Change Display Name", new_user_path, remote: true %>
 
-      <%= link_to "Choose/Change Display Name", new_user_path, remote: true %>
+     <% else %>
+
+      <%= link_to "Choose a Display Name", new_user_path, class: "label label-success", style:"font-size:15px", remote: true %><hr>
+
+     
+     <% end %>
+
+      
 
       <!-- new user path -->
       <div id="user_create_form" style="display:none">
