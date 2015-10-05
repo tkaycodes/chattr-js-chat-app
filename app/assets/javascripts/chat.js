@@ -43,6 +43,27 @@ $(document).ready(function(){
         $('#online_users').append("<li><span class='label label-success'>"+user+"</span></li>");
     }
   }
+
+
+  // helper function for User is typing display
+  function userIsTyping(user){
+    
+     if ($('#message').val() === "")
+      {
+        $('#users_typing_messages').html("");
+      }
+      else
+      {
+  //       $("#message").keypress(function(){
+          // if ( $('#'+user+'_typing').length === 0)
+          // {
+            $('#users_typing_messages').append("<li id="+user+"_typing>"+user+" is typing..."+"</li>");
+          // }
+
+  //       });
+      }
+ 
+  }
  
 
 
@@ -53,7 +74,7 @@ $(document).ready(function(){
     var message_body = $('#message').val();
     var posted_by    = $('#message').data("username");
     var posted_by_id = $('#message').data("userid");
-        
+    
 
     $('#message').val('');
     $('#message').focus();
@@ -132,6 +153,7 @@ $(document).ready(function(){
             $('#online_users').html("Online users:");
             for (var i=0;i<data.length;i++){
               appendIfDosntExist(data[i].user_name);
+              userIsTyping(data[i].user_name);
             }
           }
           else{
