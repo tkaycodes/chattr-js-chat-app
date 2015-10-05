@@ -38,6 +38,7 @@ $(document).ready(function(){
 
   // helper function for appending user names to list of online users
   function appendIfDosntExist(user){
+    loadAllMessages();
     if ( $('#online_users').text().indexOf(user) === -1 )
     {
         $('#online_users').append("<li><span class='label label-success'>"+user+"</span></li>");

@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message      = Message.new(body: params[:message])
+    @message             = Message.new(body: params[:message])
     if params[:user_id] != "undefined"
       @message.user = User.find(params[:user_id])
       @message.user.update_attributes(last_seen: Time.now)
