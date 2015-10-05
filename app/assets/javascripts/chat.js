@@ -46,24 +46,24 @@ $(document).ready(function(){
 
 
   // helper function for User is typing display
-  function userIsTyping(user){
+  // function userIsTyping(user){
     
-     if ($('#message').val() === "")
-      {
-        $('#users_typing_messages').html("");
-      }
-      else
-      {
+     // if ($('#message').val() === "")
+      // {
+        // $('#users_typing_messages').html("");
+      // }
+      // else
+      // {
   //       $("#message").keypress(function(){
           // if ( $('#'+user+'_typing').length === 0)
           // {
-            $('#users_typing_messages').append("<li id="+user+"_typing>"+user+" is typing..."+"</li>");
+            // $('#users_typing_messages').append("<li id="+user+"_typing>"+user+" is typing..."+"</li>");
           // }
 
   //       });
-      }
+      // }
  
-  }
+  // }
  
 
 
@@ -153,7 +153,7 @@ $(document).ready(function(){
             $('#online_users').html("Online users:");
             for (var i=0;i<data.length;i++){
               appendIfDosntExist(data[i].user_name);
-              userIsTyping(data[i].user_name);
+              // userIsTyping(data[i].user_name);
             }
           }
           else{
